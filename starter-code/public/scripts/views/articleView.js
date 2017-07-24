@@ -1,10 +1,10 @@
 'use strict';
 
-(function(module) {
+(function (module) {
   const articleView = {};
 
-  articleView.populateFilters = function() {
-    $('article').each(function() {
+  articleView.populateFilters = function () {
+    $('article').each(function () {
       if (!$(this).hasClass('template')) {
         let val = $(this).find('address a').text();
         let optionTag = `<option value="${val}">${val}</option>`;
@@ -22,8 +22,8 @@
     });
   };
 
-  articleView.handleAuthorFilter = function() {
-    $('#author-filter').on('change', function() {
+  articleView.handleAuthorFilter = function () {
+    $('#author-filter').on('change', function () {
       if ($(this).val()) {
         $('article').hide();
         $(`article[data-author="${$(this).val()}"]`).fadeIn();
@@ -35,8 +35,8 @@
     });
   };
 
-  articleView.handleCategoryFilter = function() {
-    $('#category-filter').on('change', function() {
+  articleView.handleCategoryFilter = function () {
+    $('#category-filter').on('change', function () {
       if ($(this).val()) {
         $('article').hide();
         $(`article[data-category="${$(this).val()}"]`).fadeIn();
@@ -51,10 +51,10 @@
   /* DONE: Once the routes are handling '/' and '/about', we can delete
       this handleMainNav function. YESSSS! */
 
-  articleView.setTeasers = function() {
+  articleView.setTeasers = function () {
     $('.article-body *:nth-of-type(n+2)').hide();
 
-    $('#articles').on('click', 'a.read-on', function(e) {
+    $('#articles').on('click', 'a.read-on', function (e) {
       e.preventDefault();
       $(this).parent().find('*').fadeIn();
       $(this).hide();
@@ -66,10 +66,10 @@
     $('#filters').fadeIn();
     Article.all.forEach(article => {
       $('#articles').append(article.toHtml('#article-template'));
-      if($(`#category-filter option:contains("${article.category}")`).length === 0) {
+      if ($(`#category-filter option:contains("${article.category}")`).length === 0) {
         $('#category-filter').append(article.toHtml('#category-filter-template'));
       }
-      if($(`#author-filter option:contains("${article.author}")`).length === 0) {
+      if ($(`#author-filter option:contains("${article.author}")`).length === 0) {
         $('#author-filter').append(article.toHtml('#author-filter-template'));
       }
     });

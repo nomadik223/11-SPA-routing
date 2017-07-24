@@ -10,13 +10,13 @@ const client = new pg.Client(conString);
 client.connect();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 
 // NOTE: Routes for requesting HTML resources
-app.get('/', (request, response) => response.sendFile('index.html', {root: '.'}));
-app.get('/new', (request, response) => response.sendFile('new.html', {root: '.'}));
+app.get('/', (request, response) => response.sendFile('index.html', { root: '.' }));
+app.get('/new', (request, response) => response.sendFile('new.html', { root: '.' }));
 
 
 // NOTE: Routes for making API calls to enact CRUD Operations on our database
